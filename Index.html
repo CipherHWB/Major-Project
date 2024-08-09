@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Analysis</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        /* Reset basic styles */
+body, h1, h2, p, form, div, input, button, select {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set body background and font */
+body {
+    background-color: #0a0f29;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Style the header */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://media.giphy.com/media/3o6nV0JWFFn1UJUiNa/giphy.gif') center/cover no-repeat;
+    z-index: -1;
+    background-color: #0a0f29;
+}
+
+header h1 {
+    font-size: 3em;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    animation: glow 2s infinite alternate, textSlideIn 1.5s ease-out;
+    position: relative;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffcc;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+}
+
+/* Import Orbitron font from Google Fonts */
+/* @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap'); */
+
+header p {
+    font-size: 1.5em;
+    color: #ffffff;
+    margin-top: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    animation: glow 2s infinite alternate, textSlideIn 2s ease-out;
+    position: relative;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Style sections */
+main > section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+}
+
+#input-section {
+    background: url('https://i.gifer.com/D1iW.gif') center/cover no-repeat;
+}
+
+#prediction-result-section {
+    background: url('https://i.gifer.com/2RNb.gif') center/cover no-repeat;
+    background-size: 100%;
+}
+
+/* Form styles */
+#prediction-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#prediction-form .form-group {
+    margin: 10px;
+    flex: 1 1 45%;
+    min-width: 200px;
+}
+
+#prediction-form .form-group:last-of-type {
+    flex-basis: 100%;
+    text-align: center;
+}
+
+#prediction-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #cceeff;
+}
+
+#prediction-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #33415c;
+    color: #ffffff;
+    font-size: 1em;
+}
+
+#prediction-form button {
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #00aaff;
+    color: #ffffff;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+#prediction-form button:hover {
+    background-color: #0077cc;
+}
+
+/* Result section styles */
+#prediction-result-section #prediction-result {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #33415c;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#prediction-result-section #prediction-result p {
+    font-size: 1.5em;
+    color: #cceeff;
+}
+
+/* Animation keyframes */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 50px rgba(255, 255, 255, 0.4);
+    }
+}
+
+@keyframes textSlideIn {
+    from {
+        left: -100%;
+        opacity: 0;
+    }
+    to {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0a0f29;
+    color: #ffffff;
+    position: relative;
+    width: 100%;
+    margin-top: 0;
+}
+
+#result-text {
+    font-size: 2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+#result-text.show {
+    opacity: 1;
+    transform: scale(1.2);
+} 
+    </style>
+
+
+</head>
+<body>
+    <header>
+        <h1>Project Success: Predictive Analysis Tool</h1>
+        <p>Empowering decisions with advanced predictive models</p>
+    </header>
+    <main>
+        <section id="input-section">
+            <h2>Input Data</h2>
+            <form id="prediction-form" action="/predict" method="post">
+                <div class="form-group">
+                    <label for="feature1">Industry:</label>
+                    <select class="form-control" id="feature1" name="feature1" required>
+                        <option value="variable1">Aviation</option>
+                        <option value="variable2">Biopharmaceutical</option>
+                        <option value="variable3">Education</option>
+                        <option value="variable4">Facilities Management</option>
+                        <option value="variable5">FNB</option>
+                        <option value="variable6">Healthcare & Welfare</option>
+                        <option value="variable7">Hospitality</option>
+                        <option value="variable8">Human Resource</option>
+                        <option value="variable9">ICT</option>
+                        <option value="variable10">Logistics</option>
+                        <option value="variable11">Security Service</option>
+                        <option value="variable12">Social Service</option>
+                        <option value="variable13">Transport</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="feature2">No. of Interviewees:</label>
+                    <input type="text" class="form-control" id="feature2" name="feature2" required>
+                </div>
+                <div class="form-group">
+                    <label for="feature3">No. of KIV:</label>
+                    <input type="text" class="form-control" id="feature3" name="feature3" required>
+                </div>
+                <div class="form-group">
+                    <label for="feature4">No. of Rejected:</label>
+                    <input type="text" class="form-control" id="feature4" name="feature4" required>
+                </div>
+                <div class="form-group">
+                    <label for="feature5">Rank & File:</label>
+                    <select class="form-control" id="feature5" name="feature5" required>
+                        <option value="variable1">Yes</option>
+                        <option value="variable2">No</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="feature6">PMET:</label>
+                    <select class="form-control" id="feature6" name="feature6" required>
+                        <option value="variable1">Yes</option>
+                        <option value="variable2">No</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="feature7">Region:</label>
+                    <select class="form-control" id="feature7" name="feature7" required>
+                        <option value="variable1">One Punggol CC</option>
+                        <option value="variable2">Pasir Ris East CC</option>
+                        <option value="variable3">Pasir Ris Elias CC</option>
+                        <option value="variable4">Punggol 21 CC</option>
+                        <option value="variable5">Punggol West CC</option>
+                        <option value="variable6">Rivervale CC</option>
+                        <option value="variable7">Sengkang CC</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="feature8">Method:</label>
+                    <select class="form-control" id="feature8" name="feature8" required>
+                        <option value="variable1">Walk In</option>
+                        <option value="variable2">Sengkang General Hospital Fair</option>
+                        <option value="variable3">Elderly</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="feature9">No. of Residents from Sengkang & Others:</label>
+                    <input type="text" class="form-control" id="feature9" name="feature9" required>
+                </div>
+                <div class="form-group">
+                    <label for="feature10">No. of Residents from Pasir Ris:</label>
+                    <input type="text" class="form-control" id="feature10" name="feature10" required>
+                </div>
+                <div class="form-group">
+                    <label for="feature11">No. of Residents from Punggol:</label>
+                    <input type="text" class="form-control" id="feature11" name="feature11" required>
+                </div>
+                <button type="submit">Predict</button>
+                <br>
+            </form>
+        </section>
+        <section id="prediction-result-section">
+            <h2>Prediction Result</h2>
+            <p>{{prediction_text}}</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Predictive Analysis Tool. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
